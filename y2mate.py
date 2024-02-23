@@ -14,12 +14,12 @@ data = (requests.get(youpak).text).split('<div class="btn-group btn-group-justif
 
 flag = True
 while flag:
-    resolution = input("Select resolution \n0. 720p \n1. 360p \n")
-    if resolution == "0":
+    resolution = input("Select resolution \n1. 720p \n2. 360p \n")
+    if resolution == "1":
         data = data.split("720P HD (mp4)")[0]
         link = data[10:-97]
         flag = False
-    elif resolution == "1":
+    elif resolution == "2":
         data = data.split("720P HD (mp4)")[1]
         data = data.split("360P (mp4)")[0]
         link = data[14:-91]
@@ -30,6 +30,7 @@ while flag:
 
 print("Downloading File...")
 vid = requests.get(link)
+print(link)
 print("File Downloaded")
 with open("video.mp4", "wb") as f:
     print("Writing file...")
